@@ -43,9 +43,11 @@ export function SummaryTable() {
                 })}
 
                 {/* if we need filling squares, we return them with a lower opacity (40) and cursor not allowed */}
-                {qtyOfFillingSquares > 0 && Array.from({ length: qtyOfFillingSquares }).map(() => {
+                {qtyOfFillingSquares > 0 && Array.from({ length: qtyOfFillingSquares }).map((_, index) => {
                     return (
-                        <div className="w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg opacity-40 cursor-not-allowed"></div>
+                        <div
+                            key={index}
+                            className="w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg opacity-40 cursor-not-allowed"></div>
                     )
                 })}
 

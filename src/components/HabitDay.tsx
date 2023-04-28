@@ -4,8 +4,10 @@
 /* Uma analogia com o html puro: seria as propriedades das tags. Por ex: a tag img tem o src, alt etc. */
 
 import * as Popover from "@radix-ui/react-popover"
+import * as Checkbox from '@radix-ui/react-checkbox'
 import { ProgressBar } from "./ProgressBar"
 import clsx from "clsx"
+import { Check } from "phosphor-react"
 
 interface HabitDayProps {
     completed: number
@@ -35,6 +37,22 @@ export function HabitDay(props: HabitDayProps) {
                     <span className="mt-1 font-extrabold leading-tight text-3xl">17/01</span>
 
                     <ProgressBar progress={completedRatio} />
+
+                    <div className="mt-6 flex flex-col gap-3">
+                        <Checkbox.Root className="flex items-center gap-3 group"> {/* group: consegue utilizar estilizações pertencentes a um elemento porém em outro elmeentos dentro dele. Usa pra conseguir usar os data properties da checkbox (que vem no radix) lá na div */}
+
+                            <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500">
+
+                                <Checkbox.Indicator>
+                                    <Check size={20} className="text-white" /> {/* Whats inside here just appear when checked. Thats why we need the div for the "unchecked" box */}
+                                </Checkbox.Indicator>
+                            </div>
+                            <span className="font-semibold text-xl text-white leading-tight group-data-[state=checked]:line-through group-data-[state=checked]:text-zinc-400">
+                                Beber 2L de água
+                            </span>
+
+                        </Checkbox.Root>
+                    </div>
 
                     <Popover.Arrow height={8} width={16} className="fill-zinc-900" />
                 </Popover.Content>
